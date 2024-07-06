@@ -1,8 +1,10 @@
-export default function Content({ data, endpoint, setSlug, setEndpoint, isLoading }){
+export default function Content({ data, endpoint, setPage, setEndpoint, setLoading }){
+
   function handleClick(animeUrl) {
     const slug = animeUrl.split('/');
     setEndpoint('detail')
-    setSlug(slug[3])
+    setPage(slug[3]);
+    setLoading(true);
   }
   // if(data.length <= 0){
   //   return (
@@ -10,22 +12,18 @@ export default function Content({ data, endpoint, setSlug, setEndpoint, isLoadin
   //   );
   // }
 
-  console.log(isLoading)
-  
-  if(isLoading){
+
+  if(data.length <=0 ){
     return(
-      <h1>Loading Bang</h1>
+      <h1>Gada cuy</h1>
     )
   }
-
-
   return data.slice(0, 15).map((anime, index) => {
     return (
       <div key={index} className="relative w-36 md:w-52 
       bg-white m-1 
       md:m-5 text-center text-sm" onClick={() => { handleClick(anime.endpoint) }}>
 
-        <h1>{isLoading}</h1>
         <img src={anime.thumb} />
         <p className="absolute opacity-80 top-0 bg-black text-white p-1">{anime.total_episode}</p>
         <p className="absolute opacity-80 top-8 bg-black text-white p-1">{anime.updated_on}</p>

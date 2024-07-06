@@ -1,7 +1,8 @@
-export default function Navbar({ setEndpoint, setPage }) {
+export default function Navbar({ setEndpoint, setPage, setLoading}) {
     function handleClick(changeLayout, changePage) {
       setEndpoint(changeLayout)
       setPage(changePage)
+      setLoading(true)
     }
     return (
       <div className="flex justify-between bg-black p-5 w-full">
